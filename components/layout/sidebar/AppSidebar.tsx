@@ -6,7 +6,7 @@ const AppSidebar = () => {
   return (
     <Sidebar collapsible="icon">
         <SidebarHeader>
-            <h1 className="font-bold">Worklane</h1>
+            <h1 className="font-bold group-data-[collapsible=icon]:hidden">Worklane</h1>
         </SidebarHeader>
             <SidebarContent>
                 <SidebarNav items={mainNav}/>

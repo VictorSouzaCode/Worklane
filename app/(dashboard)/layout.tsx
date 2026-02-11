@@ -1,6 +1,6 @@
-import Header from "@/components/layout/Header"
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar"
 import AppSidebar from "@/components/layout/sidebar/AppSidebar"
+import AppHeader from "@/components/layout/AppHeader"
 
 type LayoutTypes = {
     children: React.ReactNode
@@ -12,11 +12,11 @@ const Layout = ({
 
   return (
     <SidebarProvider>
-        <div className="flex w-full min-h-screen border border-red-500">
+        <div className="flex w-full min-h-screen">
             <AppSidebar/>
-            <SidebarInset>
-                <Header/>
-                    <main>
+            <SidebarInset className="flex flex-1 flex-col">
+                <AppHeader/>
+                    <main className="flex-1 overflow-y-auto p-8">
                     {children}
                     </main>
             </SidebarInset>
