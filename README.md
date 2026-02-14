@@ -1,4 +1,10 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# A Fullstack dashboard for freelancers
+
+- Organazie your clients
+- Organize your projects
+- Organize your tasks
+
+- See your schedule, what is due what just started
 
 ## Getting Started
 
