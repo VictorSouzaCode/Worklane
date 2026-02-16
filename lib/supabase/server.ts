@@ -25,3 +25,13 @@ export async function createSupabaseServerClient() {
     }
   );
 }
+
+/*
+This properly supports:
+
+Session refresh
+
+Cookie updates
+
+SSR-safe auth
+*/
