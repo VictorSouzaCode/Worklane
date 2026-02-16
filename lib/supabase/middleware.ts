@@ -30,3 +30,15 @@ export async function middleware(request: NextRequest) {
 export const config = {
     matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"]
 }
+
+/*
+
+This ensures:
+
+Auth cookies stay fresh
+
+Session updates propagate
+
+No weird “logged out randomly” issues
+
+*/
