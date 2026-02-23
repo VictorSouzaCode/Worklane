@@ -1,7 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-
-const DashboardPage = () => {
+export default function DashboardHome() {
   return (
     <div>
         <h1>Dashboard</h1>
@@ -21,5 +20,3 @@ const DashboardPage = () => {
     </div>
   )
 }
-
-export default DashboardPage

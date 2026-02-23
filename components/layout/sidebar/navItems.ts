@@ -5,8 +5,8 @@ import type { mainNavTypes } from "@/lib/types/mainNavTypes"
 
 export const mainNav:mainNavTypes = [
     {
-        title: "Overview",
-        href: "/dashboard",
+        title: "Home",
+        href: "/",
         icon: Home
 
     },
@@ -20,4 +20,9 @@ export const mainNav:mainNavTypes = [
         href: "/projects",
         icon: Settings
     },
+    {
+        title: "Invoices",
+        href: "/invoices",
+        icon: Settings
+    }
 ]
