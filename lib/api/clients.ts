@@ -50,8 +50,14 @@ export async function deleteClient(id: string) {
 }
 
 /*
-    userId,
-    name,
-    email,
-    company,
+Notice:
+
+We pass userId
+
+RLS enforces ownership
+
+UI stays clean
+
+This is a big architectural move.
 */
+
