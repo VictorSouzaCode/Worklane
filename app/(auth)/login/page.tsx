@@ -7,12 +7,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
+// After creating the authentication lawer to create the database schema i need to go to supabase
+
 const LoginPage = () => {
     const supabase = createClient();
     const router = useRouter();
     
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("ronaldo@whatever.com");
+    const [password, setPassword] = useState("goldmedal");
     const [loading, setLoading] = useState(false);
 
     const handleLogin = async () => {

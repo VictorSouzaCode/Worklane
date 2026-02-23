@@ -12,13 +12,4 @@ const AppHeader = () => {
   )
 }
 
-/*
-Code for the logout button
-
-async function handleLogout() {
-  await supabase.auth.signOut();
-  router.push("/auth/login");
-}
-*/
-
 export default AppHeader
