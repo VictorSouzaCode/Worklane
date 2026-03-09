@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 /*
-In a more advanced version of Ledgerly, we would:
+In a more advanced version of worklane, I would:
 
 Use Server Components to fetch data
 
@@ -16,10 +16,7 @@ Or use React Query / TanStack Query
 
 Or move to Server Actions
 
-But for now?
-
-Your current approach is fine.
-We just polish it slightly.
+But for now it is fine
 */
 
 type Client = {
