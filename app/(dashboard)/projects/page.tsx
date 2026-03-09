@@ -7,6 +7,7 @@ import { getClients } from "@/lib/api/clients";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
 
 type Client = {
   id: string;
@@ -120,9 +121,7 @@ export default function ProjectsPage() {
         </CardHeader>
         <CardContent className="flex flex-col gap-4">
           {projects.length === 0 && (
-            <p className="text-sm text-muted-foreground">
-              No projects yet.
-            </p>
+            <p className="text-sm text-muted-foreground">No projects yet.</p>
           )}
 
           {projects.map((project) => (
@@ -136,6 +135,12 @@ export default function ProjectsPage() {
                   Client: {project.clients?.name}
                 </p>
               </div>
+
+              <Link href={`/projects/${project.id}`}>
+                <p className="font-medium hover:underline cursor-pointer">
+                  {project.name}
+                </p>
+              </Link>
 
               <Button
                 variant="destructive"
