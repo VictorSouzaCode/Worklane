@@ -3,12 +3,17 @@
 import { useEffect, useState } from "react";
 import { getDashboardStats } from "@/lib/api/dashboard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { RevenueChart } from "@/components/dashboard/RevenueChart";
 
 type Stats = {
   clients: number;
   projects: number;
   tasks: number;
   revenue: number;
+  revenueChart: {
+    month: string;
+    revenue: number;
+  }[];
 };
 
 export default function OverviewPage() {
@@ -23,9 +28,7 @@ export default function OverviewPage() {
     load();
   }, []);
 
-  if (!stats) {
-    return <p>Loading dashboard...</p>;
-  }
+  if (!stats) return <p>Loading dashboard...</p>;
 
   return (
     <div className="flex flex-col gap-6">
@@ -36,7 +39,7 @@ export default function OverviewPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Total Clients</CardTitle>
+            <CardTitle>Clients</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-3xl font-bold">{stats.clients}</p>
@@ -66,13 +69,21 @@ export default function OverviewPage() {
             <CardTitle>Total Revenue</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold">
-              ${stats.revenue}
-            </p>
+            <p className="text-3xl font-bold">${stats.revenue}</p>
           </CardContent>
         </Card>
 
       </div>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Revenue Over Time</CardTitle>
+        </CardHeader>
+
+        <CardContent>
+          <RevenueChart data={stats.revenueChart} />
+        </CardContent>
+      </Card>
 
     </div>
   );
