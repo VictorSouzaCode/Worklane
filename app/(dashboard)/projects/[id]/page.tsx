@@ -3,11 +3,17 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/browser";
-import { getTasks, createTask, deleteTask } from "@/lib/api/tasks";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getProject } from "@/lib/api/projects"
+import {
+  getTasks,
+  createTask,
+  deleteTask,
+  updateTaskStatus,
+} from "@/lib/api/tasks";
+
 
 type Project = {
   id: string
@@ -22,6 +28,7 @@ type Project = {
 type Task = {
   id: string;
   title: string;
+  status: "todo" | "in_progress" | "done";
 };
 
 export default function ProjectDetailPage() {
@@ -69,6 +76,10 @@ export default function ProjectDetailPage() {
     await deleteTask(taskId);
     fetchTasks();
   }
+
+  const todoTasks = tasks.filter((t) => t.status === "todo");
+const inProgressTasks = tasks.filter((t) => t.status === "in_progress");
+const doneTasks = tasks.filter((t) => t.status === "done");
 
   return (
     <div className="flex flex-col gap-6">
@@ -120,38 +131,104 @@ export default function ProjectDetailPage() {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Tasks</CardTitle>
-        </CardHeader>
+      <div className="grid grid-cols-3 gap-6">
 
-        <CardContent className="flex flex-col gap-3">
+  {/* TODO COLUMN */}
+  <Card>
+    <CardHeader>
+      <CardTitle>Todo</CardTitle>
+    </CardHeader>
 
-          {tasks.length === 0 && (
-            <p className="text-sm text-muted-foreground">
-              No tasks yet.
-            </p>
-          )}
+    <CardContent className="flex flex-col gap-3">
+      {todoTasks.map((task) => (
+        <div
+          key={task.id}
+          className="border rounded-md p-3 flex justify-between items-center"
+        >
+          <p>{task.title}</p>
 
-          {tasks.map((task) => (
-            <div
-              key={task.id}
-              className="flex justify-between items-center border rounded-md p-3"
+          <div className="flex gap-2">
+            <Button
+              size="sm"
+              onClick={async () => {
+                await updateTaskStatus(task.id, "in_progress");
+                fetchTasks();
+              }}
             >
-              <p>{task.title}</p>
+              Start
+            </Button>
 
-              <Button
-                variant="destructive"
-                size="sm"
-                onClick={() => handleDelete(task.id)}
-              >
-                Delete
-              </Button>
-            </div>
-          ))}
+            <Button
+              size="sm"
+              variant="destructive"
+              onClick={() => handleDelete(task.id)}
+            >
+              Delete
+            </Button>
+          </div>
+        </div>
+      ))}
+    </CardContent>
+  </Card>
 
-        </CardContent>
-      </Card>
+  {/* IN PROGRESS COLUMN */}
+  <Card>
+    <CardHeader>
+      <CardTitle>In Progress</CardTitle>
+    </CardHeader>
+
+    <CardContent className="flex flex-col gap-3">
+      {inProgressTasks.map((task) => (
+        <div
+          key={task.id}
+          className="border rounded-md p-3 flex justify-between items-center"
+        >
+          <p>{task.title}</p>
+
+          <Button
+            size="sm"
+            onClick={async () => {
+              await updateTaskStatus(task.id, "done");
+              fetchTasks();
+            }}
+          >
+            Done
+          </Button>
+        </div>
+      ))}
+    </CardContent>
+  </Card>
+
+  {/* DONE COLUMN */}
+  <Card>
+    <CardHeader>
+      <CardTitle>Done</CardTitle>
+    </CardHeader>
+
+    <CardContent className="flex flex-col gap-3">
+      {doneTasks.map((task) => (
+        <div
+          key={task.id}
+          className="border rounded-md p-3 flex justify-between items-center"
+        >
+          <p>{task.title}</p>
+
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={async () => {
+              await updateTaskStatus(task.id, "todo");
+              fetchTasks();
+            }}
+          >
+            Reopen
+          </Button>
+        </div>
+      ))}
+    </CardContent>
+  </Card>
+
+</div>
 
     </div>
   );

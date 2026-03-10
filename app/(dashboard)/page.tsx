@@ -90,28 +90,15 @@ export default function OverviewPage() {
 }
 
 /*
-NEXT TASKS:
-Task status (todo / in_progress / done) - THIS ONE IS THE NEXT ONE, I HAVE ALREADY CREATED IT WITH CHATGPT
-
-Add loading states + better UX
-
-Add editing for clients/projects/tasks
-
-
-
-THINGS I NEED TO FINISH THE PROJECT:
-1 Edit clients/projects/tasks
-2 Toast notifications
-3 Confirmation dialogs
-4 Status badges
-5 Dashboard widgets (recent projects/tasks)
-6 Better invoice status
-7 Search
-
-
-
+This is more of an saas app then a internal tool
 
 FEATURES TO ADD IN MY OTHER PROJECT AFTER I COPY THIS ONE COMPLETLY
+• Show current user in header
+• Edit clients/projects/tasks
+• Toast notifications
+• Confirmation dialogs
+• Search
+
 Activity Timeline (Event Log)
 • Client created
 • Project created
@@ -120,10 +107,11 @@ Activity Timeline (Event Log)
 • Invoice paid
 
 Smart Dashboard Insights
-Top client by revenue
-Projects nearing deadline
-Overdue invoices
-Tasks due today
+• Top client by revenue
+• Projects nearing deadline
+• Overdue invoices
+• Tasks due today
+
 */
 
 /*
