@@ -7,6 +7,17 @@ import { getTasks, createTask, deleteTask } from "@/lib/api/tasks";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getProject } from "@/lib/api/projects"
+
+type Project = {
+  id: string
+  name: string
+  budget: number | null
+  deadline: string | null
+  clients: {
+    name: string
+  }
+}
 
 type Task = {
   id: string;
@@ -20,12 +31,20 @@ export default function ProjectDetailPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [title, setTitle] = useState("");
 
+  const [project, setProject] = useState<Project | null>(null)
+
   async function fetchTasks() {
     const data = await getTasks(id as string);
     setTasks(data || []);
   }
 
+  async function fetchProject() {
+  const data = await getProject(id as string)
+  setProject(data)
+}
+
   useEffect(() => {
+    fetchProject();
     fetchTasks();
   }, []);
 
@@ -54,7 +73,32 @@ export default function ProjectDetailPage() {
   return (
     <div className="flex flex-col gap-6">
 
-      <h1 className="text-2xl font-semibold">
+      {project && (
+  <Card>
+    <CardHeader>
+      <CardTitle>{project.name}</CardTitle>
+    </CardHeader>
+
+    <CardContent className="flex gap-8 text-sm text-muted-foreground">
+      <div>
+        <p className="font-medium text-foreground">Client</p>
+        <p>{project.clients?.name}</p>
+      </div>
+
+      <div>
+        <p className="font-medium text-foreground">Budget</p>
+        <p>${project.budget ?? "—"}</p>
+      </div>
+
+      <div>
+        <p className="font-medium text-foreground">Deadline</p>
+        <p>{project.deadline ?? "—"}</p>
+      </div>
+    </CardContent>
+  </Card>
+)}
+
+<h1 className="text-2xl font-semibold">
         Project Tasks
       </h1>
 

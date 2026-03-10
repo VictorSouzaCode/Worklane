@@ -92,14 +92,9 @@ export default function OverviewPage() {
 /*
 Things to add in the dashboard in sequence. open the editor go to ai say what i want copy and past the code
 
-Invoices (Money & Legitimacy)
-Goal
-
-Task status (todo / in_progress / done)
-
 Project header (client, budget, deadline)
 
-Revenue chart
+Task status (todo / in_progress / done)
 
 Add loading states + better UX
 

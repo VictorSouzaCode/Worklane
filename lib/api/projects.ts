@@ -52,3 +52,18 @@ export async function deleteProject(id: string) {
 
   if (error) throw error;
 }
+
+// GET A SINGLE PROJECT CREATED BY THE USER
+export async function getProject(id: string) {
+  const supabase = createClient()
+
+  const { data, error } = await supabase
+    .from("projects")
+    .select("*, clients(name)")
+    .eq("id", id)
+    .single()
+
+  if (error) throw error
+
+  return data
+}
